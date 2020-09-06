@@ -4,6 +4,7 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import icMoreHoriz from '@iconify/icons-ic/twotone-more-horiz';
 import icCloudDownload from '@iconify/icons-ic/twotone-cloud-download';
+import icAssignment from '@iconify/icons-ic/assignment';
 import { TableColumn } from '../interfaces/table-column.interface';
 
 @Component({
@@ -16,6 +17,7 @@ export class WidgetTableComponent<T> implements OnInit, OnChanges, AfterViewInit
   @Input() data: T[];
   @Input() columns: TableColumn<T>[];
   @Input() pageSize = 6;
+  @Input() name ;
 
   visibleColumns: Array<keyof T | string>;
   dataSource = new MatTableDataSource<T>();
@@ -25,6 +27,7 @@ export class WidgetTableComponent<T> implements OnInit, OnChanges, AfterViewInit
 
   icMoreHoriz = icMoreHoriz;
   icCloudDownload = icCloudDownload;
+  icAssignment = icAssignment;
 
   constructor() { }
 
