@@ -6,7 +6,16 @@ const routes: Routes = [
   {
     path: '',
     component: CustomLayoutComponent,
-    children: []
+    children: [
+      {
+        path: 'predefined-query',
+        loadChildren: () => import('./predefined-query/predefined-query.module').then(m => m.PredefinedQueryModule)
+      },
+      {
+        path: 'create-query',
+        loadChildren: () => import('./create-query/create-query.module').then(m => m.CreateQueryModule)
+      }
+    ]
   }
 ];
 

@@ -78,11 +78,29 @@ export class AppComponent {
 
     this.navigationService.items = [
       {
-        type: 'link',
-        label: 'Dashboard',
-        route: '/',
-        icon: icLayers
+        type: 'subheading',
+        label: 'CONSULTAS',
+        children: [
+          {
+            type: 'link',
+            label: 'Consultas predefinidas',
+            route: '/predefined-query',
+            icon: icLayers
+          },
+          {
+            type: 'link',
+            label: 'Crear consultas',
+            route: '/create-query',
+            icon: icLayers
+          },
+        ]
       }
+      // {
+      //   type: 'link',
+      //   label: 'Dashboard',
+      //   route: '/',
+      //   icon: icLayers
+      // },
     ];
   }
 }
