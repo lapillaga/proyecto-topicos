@@ -23,14 +23,14 @@
               <h2 class="title mt-0 mb-4">Query</h2>
           
               
-                <mat-form-field>
+                <mat-form-field class="w-64">
                   <mat-label>Escriba el query</mat-label>
-                  <textarea [formControl]="stateCtrl"  matInput placeholder="Ex. It makes me feel..."></textarea>
+                  <textarea rows="15" [formControl]="stateCtrl"  matInput></textarea>
                   
                 </mat-form-field>
                 <div class="p-1">
                   <button (click)="create()" mat-raised-button color="primary">
-                      GUARDAR
+                      CONSULTAR
                   </button>
                 </div>
               
