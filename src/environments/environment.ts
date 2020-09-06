@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  baseUrl: 'https://161.35.10.153:8000/topicos'
+  baseUrl: 'http://161.35.10.153:8000/topicos'
 };
 
 /*
