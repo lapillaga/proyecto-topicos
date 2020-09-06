@@ -13,7 +13,6 @@ import { TableColumn } from '../interfaces/table-column.interface';
 })
 export class WidgetTableComponent<T> implements OnInit, OnChanges, AfterViewInit {
 
-
   @Input() data: T[];
   @Input() columns: TableColumn<T>[];
   @Input() pageSize = 6;
@@ -44,5 +43,9 @@ export class WidgetTableComponent<T> implements OnInit, OnChanges, AfterViewInit
   ngAfterViewInit() {
     this.dataSource.paginator = this.paginator;
     this.dataSource.sort = this.sort;
+  }
+
+  showInfo(row: any){
+    return row.value;
   }
 }

@@ -1,0 +1,58 @@
+<vex-secondary-toolbar current="Consulta de conceptos">
+    <vex-breadcrumbs [crumbs]="['Consulta de conceptos']" class="flex-auto"></vex-breadcrumbs>
+</vex-secondary-toolbar>
+
+<div class="card block m-6" @fadeInUp fxLayout="column" fxLayout.gt-sm="row">
+    <div class="p-6">
+        <h2 class="title mt-0 mb-4">Conceptos</h2>
+        <mat-form-field class="w-64 max-w-full">
+            <mat-label>Seleccione un concepto</mat-label>
+<!--            <mat-select formControlName="phonePrefix">-->
+<!--                <mat-option *ngFor="let option of states" [value]="option">{{ option }}</mat-option>-->
+<!--            </mat-select>-->
+            <input [formControl]="stateCtrl" [matAutocomplete]="auto" matInput>
+            <mat-autocomplete #auto="matAutocomplete">
+                <mat-option *ngFor="let state of filteredStates$ | async" [value]="state.name">
+                    <span class="body-1">{{ state.name }}</span>
+                    <span class="text-hint"> | </span>
+                    <span class="caption text-secondary">Population: {{ state.type }}</span>
+                </mat-option>
+            </mat-autocomplete>
+            <button (click)="stateCtrl.reset()" *ngIf="stateCtrl.value" mat-icon-button matSuffix type="button">
+                <mat-icon [icIcon]="icClose" [inline]="true" size="24px"></mat-icon>
+            </button>
+            <button *ngIf="!stateCtrl.value" mat-icon-button matSuffix type="button">
+                <mat-icon [icIcon]="icArrowDropDown" [inline]="true" size="24px"></mat-icon>
+            </button>
+            <mat-hint>Add this hint for a better UX!</mat-hint>
+        </mat-form-field>
+    </div>
+
+    <div class="border-l" fxFlex>
+        <div class="p-6">
+            <h2 class="title mt-0 mb-4">Información relacionada al concepto</h2>
+            <h4 class="body-2 text-secondary m-0">Concepto seleccionado: </h4>
+        </div>
+
+        <mat-tab-group class="vex-tabs">
+            <mat-tab label="MIEMBROS">
+                <div class="p-6">
+                    <p class="m-0">
+                        Input text can be used with autocomplete to help users who have limited literacy or who write in a foreign
+                        language.
+                        <br>
+                        <br><span class="font-medium">For example, autocomplete can:</span>
+                    </p>
+                    <ul>
+                        <li>Suggest input as it’s typed (refreshing suggestions with each keystroke)</li>
+                        <li>Fill a field with default input text</li>
+                        <li>Pressing the return button accepts the current autocomplete suggestion.</li>
+                    </ul>
+                </div>
+            </mat-tab>
+            <mat-tab label="SOURCE CODE">
+<!--                <pre><code [vexHighlight]="autocompleteHTML"></code></pre>-->
+            </mat-tab>
+        </mat-tab-group>
+    </div>
+</div>

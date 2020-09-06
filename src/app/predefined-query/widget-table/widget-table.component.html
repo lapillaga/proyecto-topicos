@@ -20,7 +20,7 @@
         <ng-container *ngFor="let column of columns">
             <ng-container *ngIf="column.type === 'text'" [matColumnDef]="column.property">
                 <th *matHeaderCellDef mat-header-cell mat-sort-header> {{ column.label }}</th>
-                <td *matCellDef="let row" [ngClass]="column.cssClasses" mat-cell>{{ row[column.property] }}</td>
+                <td *matCellDef="let row" [ngClass]="column.cssClasses" mat-cell>{{ showInfo(row[column.property]) }}</td>
             </ng-container>
 
             <ng-container *ngIf="column.type === 'badge'" [matColumnDef]="column.property">

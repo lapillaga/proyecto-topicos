@@ -9,44 +9,55 @@ import {EstudianteModel} from './models/estudiante.model';
   styleUrls: ['./predefined-query.component.scss']
 })
 export class PredefinedQueryComponent implements OnInit {
-    tableData: EstudianteModel [];
-    tableColumns: TableColumn<EstudianteModel>[] = [
+    tableData: any [] = [];
+    tableColumns: TableColumn<any>[] = [
         {
             label: '',
-            property: 'status',
-            type: 'badge'
-        },
-        {
-            label: 'Estudiante',
-            property: 'estudiante',
+            property: '1',
             type: 'text'
         },
         {
-            label: 'Materia',
-            property: 'materia',
+            label: '',
+            property: '2',
             type: 'text',
             cssClasses: ['font-medium']
         },
     ];
   constructor(private yenaServiceService: YenaServiceService) { }
 
-  query = 'PREFIX ma: <http://www.semanticweb.org/pc/ontologies/2020/7/untitled-ontology-10#>' +
+  queries = [
+      'PREFIX ma: <http://www.semanticweb.org/pc/ontologies/2020/7/untitled-ontology-10#>' +
       'SELECT ?estudiante ?materia ' +
       'WHERE {' +
       '?m ma:TieneMaterias ?mat.' +
       '?mat ma:nombre ?materia.' +
       '?e ma:MatriculadoEn ?m.' +
       '?e ma:nombre ?estudiante.' +
-      '}';
+      '}',
+      'PREFIX ma: <http://www.semanticweb.org/pc/ontologies/2020/7/untitled-ontology-10#>' +
+      'SELECT ?materia ?docente ' +
+      'WHERE {' +
+      '?mat ma:ImpartidaPor ?d.' +
+      '?mat ma:nombre ?materia.' +
+      '?d ma:nombre ?docente.' +
+      '}'
+  ];
 
   ngOnInit(): void {
+    this.callQuery(this.queries[0]);
+    // this.callQuery(this.queries[1]);
+  }
 
-    this.yenaServiceService.createQuery(this.query)
-        .subscribe((data) => {
-          console.log(data);
-          this.tableData = data.results.bindings;
-          console.log(this.tableData);
-        });
+  callQuery(query: string){
+      this.yenaServiceService.createQuery(query)
+          .subscribe((data) => {
+              console.log(data);
+              this.tableColumns.forEach((value, index) => {
+                  value.label = data.head.vars[index];
+                  value.property = data.head.vars[index];
+              });
+              this.tableData = data.results.bindings;
+          });
   }
 
 }

@@ -14,6 +14,10 @@ const routes: Routes = [
       {
         path: 'create-query',
         loadChildren: () => import('./create-query/create-query.module').then(m => m.CreateQueryModule)
+      },
+      {
+        path: 'concept-query',
+        loadChildren: () => import('./concept-query/concept-query.module').then(m => m.ConceptQueryModule)
       }
     ]
   }
